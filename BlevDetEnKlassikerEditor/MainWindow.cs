@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text;
 
 namespace BlevDetEnKlassikerEditor;
 
@@ -58,26 +59,45 @@ public partial class MainWindow : Form
 
     private void avslutaToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        try
-        {
-            Save();
-        }
-        catch (Exception exception)
-        {
-            MessageBox.Show(this, $@"Kunde inte spara ändringar: {exception.Message}", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        Close();
+        if (Save(out var exception))
+            Close();
+        else
+            MessageBox.Show(this, $@"Kunde inte spara ändringar: {exception?.Message}", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
-    private void Save()
+    private bool Save(out Exception? exception)
     {
+        exception = null;
 
+        try
+        {
+            var s = new StringBuilder();
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.Tag is not EpisodeDto episode)
+                    continue;
+
+                if (item == listView1.Items[^1])
+                    s.Append(episode.ToFileRow());
+                else
+                    s.AppendLine(episode.ToFileRow());
+            }
+
+            File.WriteAllText(EpisodesFileName, s.ToString());
+            return true;
+        }
+        catch (Exception e)
+        {
+            exception = e;
+            return false;
+        }
     }
 
     private void genereraSidaToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        const string generatorPath = @"C:\Users\hbom\OneDrive\BlevDetEnKlassiker\Generator\InteEnSingelGenerator\bin\Release\net10.0\BlevDetEnKlassikerGenerator.exe";
+        Save(out _);
+        const string generatorPath = @"D:\GitRepos\BlevDetEnKlassiker-Generator\BlevDetEnKlassikerGenerator\bin\Release\net10.0\BlevDetEnKlassikerGenerator.exe";
         Process.Start(generatorPath);
     }
 
@@ -90,13 +110,10 @@ public partial class MainWindow : Form
         while (publishedDate.DayOfWeek != DayOfWeek.Tuesday)
             publishedDate = publishedDate.AddDays(1);
 
-        if (listView1.Items.Count > 0)
+        if (listView1.Items.Count > 0 && listView1.Items[0].Tag is EpisodeDto lastItem)
         {
-            if (listView1.Items[0].Tag is EpisodeDto lastItem)
-            {
-                episodeNumber = lastItem.EpisodeNumber + 1;
-                publishedDate = publishedDate.AddDays(7);
-            }
+            episodeNumber = lastItem.EpisodeNumber + 1;
+            publishedDate = lastItem.PublishedDate.AddDays(7).ToDateTime(new TimeOnly(0, 0));
         }
 
         var episode = new EpisodeDto(episodeNumber, false, "Lista1", 1980, "Lista2", 1980, DateOnly.FromDateTime(publishedDate), 0, 0);
@@ -113,6 +130,8 @@ public partial class MainWindow : Form
             listView1.Items.Insert(0, item);
         else
             listView1.Items.Add(item);
+
+        Save(out _);
     }
 
     private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -123,9 +142,8 @@ public partial class MainWindow : Form
             return;
 
         item.Selected = true;
-        var episode = item.Tag as EpisodeDto;
 
-        if (episode == null)
+        if (item.Tag is not EpisodeDto episode)
             return;
 
         using var editor = new EpisodeDialog();
@@ -140,6 +158,7 @@ public partial class MainWindow : Form
         item.SubItems[3].Text = episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "";
         item.SubItems[4].Text = episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "";
         item.SubItems[5].Text = episode.EpisodeNumber.ToString();
+        Save(out _);
     }
 
     private void skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem_Click(object sender, EventArgs e)

@@ -67,7 +67,7 @@ public partial class EpisodeDialog : Form
     private void txtLengthSeconds_Validating(object sender, CancelEventArgs e)
     {
         GetLength(out var lengthMinutes, out var lengthSeconds);
-        txtLengthMinutes.Text = lengthSeconds.ToString("00");
+        txtLengthSeconds.Text = lengthSeconds.ToString("00");
     }
 
     private void UpdateBitmap()
@@ -136,12 +136,30 @@ public partial class EpisodeDialog : Form
             return;
         }
 
+        if (!GetPublishedDate(txtPublishedDate.Text, out var publishedDate))
+        {
+            txtPublishedDate.Focus();
+            MessageBox.Show(this, @"Publiceringsdatum är inte giltigt.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
         if (!GetLength(out var lengthMinutes, out var lengthSeconds))
         {
             txtLengthMinutes.Focus();
             MessageBox.Show(this, @"Längden är inte giltig.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+
+        Episode.EpisodeNumber = episodeNumber;
+        Episode.Published = chkPublished.Checked;
+        Episode.List1Name = txtList1.Text;
+        Episode.List1Year = year1;
+        Episode.List2Name = txtList2.Text;
+        Episode.List2Year = year2;
+        Episode.PublishedDate = publishedDate;
+        Episode.LengthMinutes = lengthMinutes;
+        Episode.LengthSeconds = lengthSeconds;
+        DialogResult = DialogResult.OK;
     }
 
     private bool GetEpisodeNumber(out int episodeNumber)
@@ -165,6 +183,29 @@ public partial class EpisodeDialog : Form
         year = newYear;
 
         return true;
+    }
+
+    private bool GetPublishedDate(string rawDate, out DateOnly publishedDate)
+    {
+        publishedDate = Episode!.PublishedDate;
+
+        try
+        {
+            var parts = rawDate.Trim().Split('-');
+
+            if (parts.Length != 3)
+                return false;
+
+            var y = int.Parse(parts[0]);
+            var m = int.Parse(parts[1]);
+            var d = int.Parse(parts[2]);
+            publishedDate = new DateOnly(y, m, d);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private bool GetLength(out int lengthMinutes, out int lengthSeconds)

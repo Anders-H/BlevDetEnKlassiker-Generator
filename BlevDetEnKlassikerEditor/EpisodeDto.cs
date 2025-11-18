@@ -1,4 +1,6 @@
-﻿namespace BlevDetEnKlassikerEditor;
+﻿using System.Text;
+
+namespace BlevDetEnKlassikerEditor;
 
 public class EpisodeDto
 {
@@ -88,4 +90,14 @@ public class EpisodeDto
     public string List2AsString() =>
         $"{List2Name} {List2Year:0000}";
 
+    public string ToFileRow()
+    {
+        var episodeName = new StringBuilder();
+        episodeName.Append($"{List1Name} {List1Year:0000} och {List2Name} {List2Year:0000}");
+        
+        while (episodeName.Length < 40)
+            episodeName.Append(' ');
+
+        return $"{(Published ? "" : "#")}{episodeName}, {PublishedDate:yyyy-MM-dd}, {LengthMinutes:00}:{LengthSeconds:00}, , {EpisodeNumber}";
+    }
 }

@@ -98,7 +98,7 @@ table {{ border: none; margin: 0; padding: 0; width: 100%; }} td {{ vertical-ali
 
 const string websiteLinks = @"<div style=""border-top: 1px solid #777777; margin-top: 30px; margin-bottom: 30px; padding-top: 30px;"">
     <a href=""https://ahesselbom.se/"" target=""_blank"" style=""padding-right: 30px;"">https://ahesselbom.se/</a><a href=""https://heltperfekt.com/"" target=""_blank"" style=""padding-left: 30px;"">https://heltperfekt.com/</a>
-    <br/><br/><span style=""font-size: smaller;"">&quot;Blev det en klassiker?&quot; är <a href=""https://github.com/Anders-H/BlevDetEnKlassiker-Generator"">open source</a></span>
+    <br/><br/><span style=""font-size: smaller;"">&quot;Blev det en klassiker?&quot; är <a href=""https://github.com/Anders-H/BlevDetEnKlassiker-Generator"" target=""_blank"">open source</a>.</span>
 </div>";
 
 const string youTubeLink = $@"<b>YouTube:</b> <a href=""{youTubeChannel}"" target=""_blank"">{title}</a><br /><br />";
@@ -149,8 +149,8 @@ for (var pageIndex = 0; pageIndex < pagesCount; pageIndex++)
             sw.Write("<tr>");
             sw.Write($@"<td style=""white-space: nowrap;"">0</td>");
             sw.Write($@"<td style=""white-space: nowrap; font-size: smaller; padding-top: 8px;"">{episode.PublishedDate:yyyy-MM-dd}</td>");
-            var imageThumbFilename = Path.Combine(localOutput, $"ep\\00_.jpg");
-            var imageFilename = Path.Combine(localOutput, $"ep\\00.jpg");
+            var imageThumbFilename = Path.Combine(localOutput, "ep\\00_.jpg");
+            var imageFilename = Path.Combine(localOutput, "ep\\00.jpg");
 
             if (File.Exists(imageThumbFilename))
                 sw.Write($@"<td><a href=""ep/00.html""><img src=""ep/00_.jpg"" style=""width: 24px; height: 24px;"" alt=""Trailer"" /></a></td>");
@@ -249,13 +249,8 @@ for (var pageIndex = 0; pageIndex < pagesCount; pageIndex++)
         if (episode.Title == "Trailer")
         {
             using var sw = new StreamWriter(Path.Combine(localOutput, "ep\\00.html"), Encoding.UTF8, options);
-
             var imageFilename = Path.Combine(localOutput, "ep\\00.jpg");
-
-            if (File.Exists(imageFilename))
-                imageFilename = $"./00.jpg";
-            else
-                imageFilename = $"../{titleImage}";
+            imageFilename = File.Exists(imageFilename) ? "./00.jpg" : $"../{titleImage}";
 
             sw.Write(episodeSiteHead.Replace("<!--EPISODE_TITLE-->", "ingen topplista, men det kommer att förändras").Replace("<!--COUNT-->", "0").Replace("./cover.jpg", imageFilename));
             sw.Write(@"<table style=""width: 100%"">");
@@ -276,13 +271,8 @@ for (var pageIndex = 0; pageIndex < pagesCount; pageIndex++)
         else
         {
             using var sw = new StreamWriter(Path.Combine(localOutput, $"ep\\{count:00}.html"), Encoding.UTF8, options);
-
             var imageFilename = Path.Combine(localOutput, $"ep\\{count:00}.jpg");
-
-            if (File.Exists(imageFilename))
-                imageFilename = $"./{count:00}.jpg";
-            else
-                imageFilename = "../inteensingel.jpg";
+            imageFilename = File.Exists(imageFilename) ? $"./{count:00}.jpg" : "../inteensingel.jpg";
 
             sw.Write(episodeSiteHead.Replace("<!--EPISODE_TITLE-->", episode.Title).Replace("<!--COUNT-->", count.ToString()).Replace("./cover.jpg", imageFilename));
             sw.Write(@"<table style=""width: 100%"">");
