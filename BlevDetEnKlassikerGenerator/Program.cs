@@ -98,6 +98,7 @@ table {{ border: none; margin: 0; padding: 0; width: 100%; }} td {{ vertical-ali
 
 const string websiteLinks = @"<div style=""border-top: 1px solid #777777; margin-top: 30px; margin-bottom: 30px; padding-top: 30px;"">
     <a href=""https://ahesselbom.se/"" target=""_blank"" style=""padding-right: 30px;"">https://ahesselbom.se/</a><a href=""https://heltperfekt.com/"" target=""_blank"" style=""padding-left: 30px;"">https://heltperfekt.com/</a>
+    <br/><br/><span style=""font-size: smaller;"">&quot;Blev det en klassiker?&quot; är <a href=""https://github.com/Anders-H/BlevDetEnKlassiker-Generator"">open source</a></span>
 </div>";
 
 const string youTubeLink = $@"<b>YouTube:</b> <a href=""{youTubeChannel}"" target=""_blank"">{title}</a><br /><br />";
