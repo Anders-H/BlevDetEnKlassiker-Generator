@@ -47,14 +47,15 @@ public static class BitmapGeneration
         return bmp;
     }
 
-    public static void SaveForEpisode(Bitmap bitmap, int episodeNumber)
+    public static void SaveForEpisode(Bitmap bitmap, int episodeNumber, bool includeMp3Image)
     {
         var fi = new DirectoryInfo(MainWindow.OutputFolderEpisodeGraphics);
 
         if (!fi.Exists)
             fi.Create();
 
-        bitmap.Save(Path.Combine(MainWindow.EpisodeImageOutputFolder, $"{episodeNumber:00}.png"), ImageFormat.Png);
+        if (includeMp3Image)
+            bitmap.Save(Path.Combine(MainWindow.EpisodeImageOutputFolder, $"{episodeNumber:00}.png"), ImageFormat.Png);
 
         var jpegCodec = ImageCodecInfo.GetImageEncoders().First(enc => enc.FormatID == ImageFormat.Jpeg.Guid);
         var jpegParams = new EncoderParameters(1);

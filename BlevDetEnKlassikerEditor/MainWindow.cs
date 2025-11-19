@@ -172,12 +172,39 @@ public partial class MainWindow : Form
         try
         {
             var bitmap = BitmapGeneration.CreateBitmap(episode.EpisodeNumber, episode.List1Name, episode.List1Year, episode.List2Name, episode.List2Year);
-            BitmapGeneration.SaveForEpisode(bitmap, episode.EpisodeNumber);
+            BitmapGeneration.SaveForEpisode(bitmap, episode.EpisodeNumber, true);
             MessageBox.Show(this, $@"Skapade bilder för avsnitt {episode.EpisodeNumber}.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception exception)
         {
             MessageBox.Show(this, $@"Misslyckades: {exception.Message}", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void skapaBilderSomSaknasToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Save(out _);
+        var x = 0;
+
+        foreach (ListViewItem item in listView1.Items)
+        {
+            x++;
+
+            if (item.Tag is not EpisodeDto episode)
+                continue;
+
+            if (episode.EpisodeImagesExist)
+                continue;
+
+            try
+            {
+                var bitmap = BitmapGeneration.CreateBitmap(episode.EpisodeNumber, episode.List1Name, episode.List1Year, episode.List2Name, episode.List2Year);
+                BitmapGeneration.SaveForEpisode(bitmap, episode.EpisodeNumber, x < 4);
+            }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

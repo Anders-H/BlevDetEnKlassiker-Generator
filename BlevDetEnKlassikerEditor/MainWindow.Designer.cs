@@ -34,10 +34,10 @@
             avslutaToolStripMenuItem = new ToolStripMenuItem();
             åtgärderToolStripMenuItem = new ToolStripMenuItem();
             skapaNyttAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem = new ToolStripMenuItem();
             skapaBilderSomSaknasToolStripMenuItem = new ToolStripMenuItem();
             genereraSidaToolStripMenuItem = new ToolStripMenuItem();
             listView1 = new ListView();
-            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             // avslutaToolStripMenuItem
             // 
             avslutaToolStripMenuItem.Name = "avslutaToolStripMenuItem";
-            avslutaToolStripMenuItem.Size = new Size(113, 22);
+            avslutaToolStripMenuItem.Size = new Size(180, 22);
             avslutaToolStripMenuItem.Text = "Avsluta";
             avslutaToolStripMenuItem.Click += avslutaToolStripMenuItem_Click;
             // 
@@ -78,11 +78,19 @@
             skapaNyttAvsnittToolStripMenuItem.Text = "Skapa nytt avsnitt";
             skapaNyttAvsnittToolStripMenuItem.Click += skapaNyttAvsnittToolStripMenuItem_Click;
             // 
+            // skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem
+            // 
+            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Name = "skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem";
+            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Size = new Size(295, 22);
+            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Text = "Skapa bild för markerat avsnitt (skriv över)";
+            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Click += skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem_Click;
+            // 
             // skapaBilderSomSaknasToolStripMenuItem
             // 
             skapaBilderSomSaknasToolStripMenuItem.Name = "skapaBilderSomSaknasToolStripMenuItem";
             skapaBilderSomSaknasToolStripMenuItem.Size = new Size(295, 22);
             skapaBilderSomSaknasToolStripMenuItem.Text = "Skapa bilder som saknas";
+            skapaBilderSomSaknasToolStripMenuItem.Click += skapaBilderSomSaknasToolStripMenuItem_Click;
             // 
             // genereraSidaToolStripMenuItem
             // 
@@ -104,13 +112,6 @@
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             listView1.MouseDoubleClick += listView1_MouseDoubleClick;
-            // 
-            // skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem
-            // 
-            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Name = "skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem";
-            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Size = new Size(295, 22);
-            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Text = "Skapa bild för markerat avsnitt (skriv över)";
-            skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem.Click += skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem_Click;
             // 
             // MainWindow
             // 

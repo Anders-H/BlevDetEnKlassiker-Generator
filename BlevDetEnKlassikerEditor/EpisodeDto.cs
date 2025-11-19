@@ -90,11 +90,27 @@ public class EpisodeDto
     public string List2AsString() =>
         $"{List2Name} {List2Year:0000}";
 
+    public bool EpisodeImagesExist
+    {
+        get
+        {
+            try
+            {
+                var filename = Path.Combine(MainWindow.OutputFolderEpisodeGraphics, $"{EpisodeNumber:00}.jpg");
+                return File.Exists(filename);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+
     public string ToFileRow()
     {
         var episodeName = new StringBuilder();
         episodeName.Append($"{List1Name} {List1Year:0000} och {List2Name} {List2Year:0000}");
-        
+
         while (episodeName.Length < 40)
             episodeName.Append(' ');
 
