@@ -38,6 +38,9 @@
             skapaBilderSomSaknasToolStripMenuItem = new ToolStripMenuItem();
             genereraSidaToolStripMenuItem = new ToolStripMenuItem();
             listView1 = new ListView();
+            toolStripMenuItem1 = new ToolStripSeparator();
+            redigeraAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            taBortAvsnittToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,13 +63,13 @@
             // avslutaToolStripMenuItem
             // 
             avslutaToolStripMenuItem.Name = "avslutaToolStripMenuItem";
-            avslutaToolStripMenuItem.Size = new Size(180, 22);
+            avslutaToolStripMenuItem.Size = new Size(113, 22);
             avslutaToolStripMenuItem.Text = "Avsluta";
             avslutaToolStripMenuItem.Click += avslutaToolStripMenuItem_Click;
             // 
             // åtgärderToolStripMenuItem
             // 
-            åtgärderToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { skapaNyttAvsnittToolStripMenuItem, skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem, skapaBilderSomSaknasToolStripMenuItem, genereraSidaToolStripMenuItem });
+            åtgärderToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { skapaNyttAvsnittToolStripMenuItem, redigeraAvsnittToolStripMenuItem, taBortAvsnittToolStripMenuItem, toolStripMenuItem1, skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem, skapaBilderSomSaknasToolStripMenuItem, genereraSidaToolStripMenuItem });
             åtgärderToolStripMenuItem.Name = "åtgärderToolStripMenuItem";
             åtgärderToolStripMenuItem.Size = new Size(65, 20);
             åtgärderToolStripMenuItem.Text = "Åtgärder";
@@ -113,6 +116,24 @@
             listView1.View = View.Details;
             listView1.MouseDoubleClick += listView1_MouseDoubleClick;
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(292, 6);
+            // 
+            // redigeraAvsnittToolStripMenuItem
+            // 
+            redigeraAvsnittToolStripMenuItem.Name = "redigeraAvsnittToolStripMenuItem";
+            redigeraAvsnittToolStripMenuItem.Size = new Size(295, 22);
+            redigeraAvsnittToolStripMenuItem.Text = "Redigera avsnitt...";
+            redigeraAvsnittToolStripMenuItem.Click += redigeraAvsnittToolStripMenuItem_Click;
+            // 
+            // taBortAvsnittToolStripMenuItem
+            // 
+            taBortAvsnittToolStripMenuItem.Name = "taBortAvsnittToolStripMenuItem";
+            taBortAvsnittToolStripMenuItem.Size = new Size(295, 22);
+            taBortAvsnittToolStripMenuItem.Text = "Ta bort avsnitt";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -145,5 +166,8 @@
         private ToolStripMenuItem genereraSidaToolStripMenuItem;
         private ToolStripMenuItem skapaNyttAvsnittToolStripMenuItem;
         private ToolStripMenuItem skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem;
+        private ToolStripMenuItem redigeraAvsnittToolStripMenuItem;
+        private ToolStripMenuItem taBortAvsnittToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
     }
 }

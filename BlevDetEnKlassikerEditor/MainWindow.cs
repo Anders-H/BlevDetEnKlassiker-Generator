@@ -207,4 +207,32 @@ public partial class MainWindow : Form
             }
         }
     }
+
+    private void redigeraAvsnittToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (listView1.SelectedItems.Count == 0)
+        {
+            MessageBox.Show(this, @"Välj ett avsnitt att redigera.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var item = listView1.SelectedItems[0];
+
+        if (item.Tag is not EpisodeDto episode)
+            return;
+
+        using var editor = new EpisodeDialog();
+        editor.Episode = episode;
+
+        if (editor.ShowDialog(this) != DialogResult.OK)
+            return;
+
+        item.SubItems[0].Text = episode.List1AsString();
+        item.SubItems[1].Text = episode.List2AsString();
+        item.SubItems[2].Text = episode.Published ? "Ja" : "Nej";
+        item.SubItems[3].Text = episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "";
+        item.SubItems[4].Text = episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "";
+        item.SubItems[5].Text = episode.EpisodeNumber.ToString();
+        Save(out _);
+    }
 }
