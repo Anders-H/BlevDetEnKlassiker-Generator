@@ -34,13 +34,15 @@
             avslutaToolStripMenuItem = new ToolStripMenuItem();
             åtgärderToolStripMenuItem = new ToolStripMenuItem();
             skapaNyttAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            redigeraAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            taBortAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
             skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem = new ToolStripMenuItem();
             skapaBilderSomSaknasToolStripMenuItem = new ToolStripMenuItem();
             genereraSidaToolStripMenuItem = new ToolStripMenuItem();
             listView1 = new ListView();
-            toolStripMenuItem1 = new ToolStripSeparator();
-            redigeraAvsnittToolStripMenuItem = new ToolStripMenuItem();
-            taBortAvsnittToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripSeparator();
+            omnumreraToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,7 +71,7 @@
             // 
             // åtgärderToolStripMenuItem
             // 
-            åtgärderToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { skapaNyttAvsnittToolStripMenuItem, redigeraAvsnittToolStripMenuItem, taBortAvsnittToolStripMenuItem, toolStripMenuItem1, skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem, skapaBilderSomSaknasToolStripMenuItem, genereraSidaToolStripMenuItem });
+            åtgärderToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { skapaNyttAvsnittToolStripMenuItem, redigeraAvsnittToolStripMenuItem, taBortAvsnittToolStripMenuItem, toolStripMenuItem1, omnumreraToolStripMenuItem, toolStripMenuItem2, skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem, skapaBilderSomSaknasToolStripMenuItem, genereraSidaToolStripMenuItem });
             åtgärderToolStripMenuItem.Name = "åtgärderToolStripMenuItem";
             åtgärderToolStripMenuItem.Size = new Size(65, 20);
             åtgärderToolStripMenuItem.Text = "Åtgärder";
@@ -80,6 +82,25 @@
             skapaNyttAvsnittToolStripMenuItem.Size = new Size(295, 22);
             skapaNyttAvsnittToolStripMenuItem.Text = "Skapa nytt avsnitt";
             skapaNyttAvsnittToolStripMenuItem.Click += skapaNyttAvsnittToolStripMenuItem_Click;
+            // 
+            // redigeraAvsnittToolStripMenuItem
+            // 
+            redigeraAvsnittToolStripMenuItem.Name = "redigeraAvsnittToolStripMenuItem";
+            redigeraAvsnittToolStripMenuItem.Size = new Size(295, 22);
+            redigeraAvsnittToolStripMenuItem.Text = "Redigera avsnitt...";
+            redigeraAvsnittToolStripMenuItem.Click += redigeraAvsnittToolStripMenuItem_Click;
+            // 
+            // taBortAvsnittToolStripMenuItem
+            // 
+            taBortAvsnittToolStripMenuItem.Name = "taBortAvsnittToolStripMenuItem";
+            taBortAvsnittToolStripMenuItem.Size = new Size(295, 22);
+            taBortAvsnittToolStripMenuItem.Text = "Ta bort avsnitt";
+            taBortAvsnittToolStripMenuItem.Click += taBortAvsnittToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(292, 6);
             // 
             // skapaBildFörMarkeratAvsnittskrivÖverToolStripMenuItem
             // 
@@ -116,23 +137,17 @@
             listView1.View = View.Details;
             listView1.MouseDoubleClick += listView1_MouseDoubleClick;
             // 
-            // toolStripMenuItem1
+            // toolStripMenuItem2
             // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(292, 6);
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(292, 6);
             // 
-            // redigeraAvsnittToolStripMenuItem
+            // omnumreraToolStripMenuItem
             // 
-            redigeraAvsnittToolStripMenuItem.Name = "redigeraAvsnittToolStripMenuItem";
-            redigeraAvsnittToolStripMenuItem.Size = new Size(295, 22);
-            redigeraAvsnittToolStripMenuItem.Text = "Redigera avsnitt...";
-            redigeraAvsnittToolStripMenuItem.Click += redigeraAvsnittToolStripMenuItem_Click;
-            // 
-            // taBortAvsnittToolStripMenuItem
-            // 
-            taBortAvsnittToolStripMenuItem.Name = "taBortAvsnittToolStripMenuItem";
-            taBortAvsnittToolStripMenuItem.Size = new Size(295, 22);
-            taBortAvsnittToolStripMenuItem.Text = "Ta bort avsnitt";
+            omnumreraToolStripMenuItem.Name = "omnumreraToolStripMenuItem";
+            omnumreraToolStripMenuItem.Size = new Size(295, 22);
+            omnumreraToolStripMenuItem.Text = "Omnumrera";
+            omnumreraToolStripMenuItem.Click += omnumreraToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
@@ -169,5 +184,7 @@
         private ToolStripMenuItem redigeraAvsnittToolStripMenuItem;
         private ToolStripMenuItem taBortAvsnittToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem omnumreraToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem2;
     }
 }

@@ -39,7 +39,14 @@ public partial class MainWindow : Form
         Refresh();
         var episodes = new EpisodeDtoList();
         episodes.Load();
+        RefreshList(episodes, 0);
+        Cursor = Cursors.Default;
+    }
+
+    private void RefreshList(EpisodeDtoList episodes, int selectedEpisodeNumber)
+    {
         listView1.BeginUpdate();
+        listView1.Items.Clear();
 
         foreach (var episode in episodes)
         {
@@ -54,7 +61,19 @@ public partial class MainWindow : Form
         }
 
         listView1.EndUpdate();
-        Cursor = Cursors.Default;
+
+        foreach (ListViewItem item in listView1.Items)
+        {
+            if (item.Tag is not EpisodeDto episode)
+                continue;
+
+            if (episode.EpisodeNumber != selectedEpisodeNumber)
+                continue;
+
+            item.Selected = true;
+            item.EnsureVisible();
+            break;
+        }
     }
 
     private void avslutaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,6 +252,51 @@ public partial class MainWindow : Form
         item.SubItems[3].Text = episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "";
         item.SubItems[4].Text = episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "";
         item.SubItems[5].Text = episode.EpisodeNumber.ToString();
+        Save(out _);
+    }
+
+    private void taBortAvsnittToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (listView1.SelectedItems.Count == 0)
+        {
+            MessageBox.Show(this, @"Inget avsnitt är markerat.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var item = listView1.SelectedItems[0];
+
+        if (item.Tag is not EpisodeDto episode)
+            return;
+
+        if (MessageBox.Show(this, $@"Är du säker på att du vill ta bort det markerade avsnittet ({episode.EpisodeNumber})?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            return;
+
+        listView1.SelectedItems.Clear();
+        listView1.Items.Remove(item);
+        Save(out _);
+    }
+
+    private void omnumreraToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var selectedEpisodeNumber = 0;
+
+        if (listView1.SelectedItems.Count > 0 && listView1.SelectedItems[0].Tag is EpisodeDto selectedEpisode)
+            selectedEpisodeNumber = selectedEpisode.EpisodeNumber;
+
+        var episodeNumber = listView1.Items.Count;
+        var episodes = new EpisodeDtoList();
+
+        foreach (ListViewItem item in listView1.Items)
+        {
+            if (item.Tag is not EpisodeDto episode)
+                continue;
+
+            episode.EpisodeNumber = episodeNumber;
+            episodes.Add(episode);
+            episodeNumber--;
+        }
+
+        RefreshList(episodes, selectedEpisodeNumber);
         Save(out _);
     }
 }
