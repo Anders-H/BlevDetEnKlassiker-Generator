@@ -54,7 +54,7 @@ public partial class MainWindow : Form
             item.SubItems.Add(episode.List2AsString());
             item.SubItems.Add(episode.Published ? "Ja" : "Nej");
             item.SubItems.Add(episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "");
-            item.SubItems.Add(episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "");
+            item.SubItems.Add(episode.LengthAsString);
             item.SubItems.Add(episode.EpisodeNumber.ToString());
             item.Tag = episode;
             listView1.Items.Add(item);
@@ -141,7 +141,7 @@ public partial class MainWindow : Form
         item.SubItems.Add(episode.List2AsString());
         item.SubItems.Add(episode.Published ? "Ja" : "Nej");
         item.SubItems.Add(episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "");
-        item.SubItems.Add(episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "");
+        item.SubItems.Add(episode.LengthAsString);
         item.SubItems.Add(episode.EpisodeNumber.ToString());
         item.Tag = episode;
 
@@ -175,7 +175,7 @@ public partial class MainWindow : Form
         item.SubItems[1].Text = episode.List2AsString();
         item.SubItems[2].Text = episode.Published ? "Ja" : "Nej";
         item.SubItems[3].Text = episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "";
-        item.SubItems[4].Text = episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "";
+        item.SubItems[4].Text = episode.LengthAsString;
         item.SubItems[5].Text = episode.EpisodeNumber.ToString();
         Save(out _);
     }
@@ -250,7 +250,7 @@ public partial class MainWindow : Form
         item.SubItems[1].Text = episode.List2AsString();
         item.SubItems[2].Text = episode.Published ? "Ja" : "Nej";
         item.SubItems[3].Text = episode.Published ? episode.PublishedDate.ToString("yyyy-MM-dd") : "";
-        item.SubItems[4].Text = episode.LengthMinutes != 0 && episode.LengthSeconds != 0 ? $"{episode.LengthMinutes:00}:{episode.LengthSeconds:00}" : "";
+        item.SubItems[4].Text = episode.LengthAsString;
         item.SubItems[5].Text = episode.EpisodeNumber.ToString();
         Save(out _);
     }

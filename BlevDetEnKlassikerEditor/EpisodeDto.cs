@@ -90,6 +90,17 @@ public class EpisodeDto
     public string List2AsString() =>
         $"{List2Name} {List2Year:0000}";
 
+    public string LengthAsString
+    {
+        get
+        {
+            if (LengthMinutes <= 0 && LengthSeconds <= 0)
+                return "";
+
+            return $"{LengthMinutes:00}:{LengthSeconds:00}";
+        }
+    }
+
     public bool EpisodeImagesExist
     {
         get
