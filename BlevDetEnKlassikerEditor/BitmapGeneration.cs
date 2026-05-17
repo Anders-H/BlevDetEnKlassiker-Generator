@@ -40,10 +40,10 @@ public static class BitmapGeneration
             g.DrawString($"{list2Name} ({list2Year})", font, shadowBrush, new RectangleF(0 + x, 350 + y, bmp.Width, 40), format);
         }
 
-        g.DrawString($"Avsnitt {episodeNumber:00}", font, brush, new RectangleF(0, 120, bmp.Width, 40), format);
-        g.DrawString($"{list1Name} ({list1Year})", font, brush, new RectangleF(0, 290, bmp.Width, 40), format);
-        g.DrawString("och", font, brush, new RectangleF(0, 322, bmp.Width, 40), format);
-        g.DrawString($"{list2Name} ({list2Year})", font, brush, new RectangleF(0, 350, bmp.Width, 40), format);
+        g.DrawString($"Avsnitt {episodeNumber:00}", font, brush, new RectangleF(0, 130, bmp.Width, 40), format);
+        g.DrawString($"{list1Name} ({list1Year})", font, brush, new RectangleF(0, 300, bmp.Width, 40), format);
+        g.DrawString("och", font, brush, new RectangleF(0, 332, bmp.Width, 40), format);
+        g.DrawString($"{list2Name} ({list2Year})", font, brush, new RectangleF(0, 360, bmp.Width, 40), format);
         return bmp;
     }
 
