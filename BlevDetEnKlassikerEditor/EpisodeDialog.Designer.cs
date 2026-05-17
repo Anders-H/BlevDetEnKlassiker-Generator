@@ -153,14 +153,14 @@
             // 
             pictureBox1.Location = new Point(296, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(400, 400);
+            pictureBox1.Size = new Size(512, 512);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 13;
             pictureBox1.TabStop = false;
             // 
             // btnOk
             // 
-            btnOk.Location = new Point(136, 380);
+            btnOk.Location = new Point(136, 492);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(75, 23);
             btnOk.TabIndex = 16;
@@ -170,7 +170,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(216, 380);
+            btnCancel.Location = new Point(216, 492);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 17;
@@ -228,7 +228,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(701, 409);
+            ClientSize = new Size(811, 519);
             Controls.Add(txtLengthSeconds);
             Controls.Add(txtLengthMinutes);
             Controls.Add(label7);

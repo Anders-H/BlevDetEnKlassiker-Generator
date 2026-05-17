@@ -5,7 +5,7 @@ namespace BlevDetEnKlassikerEditor;
 public static class BitmapGeneration
 {
     private static Bitmap? _template;
-    private const string TemplateFilename = @"C:\Users\hbom\OneDrive\BlevDetEnKlassiker\avsnittsbild400x400.png";
+    private const string TemplateFilename = @"C:\Users\hbom\OneDrive\BlevDetEnKlassiker\avsnittsbild512x512.png";
 
     public static Bitmap CreateBitmap(int episodeNumber, string list1Name, int list1Year, string list2Name, int list2Year)
     {
@@ -13,8 +13,8 @@ public static class BitmapGeneration
         var bmp = new Bitmap(_template.Width, _template.Height);
         using var g = Graphics.FromImage(bmp);
         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-        g.DrawImage(_template, 0, 0, 400, 400);
-        using var font = new Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel);
+        g.DrawImage(_template, 0, 0, 512, 512);
+        using var font = new Font("Arial", 32, FontStyle.Bold, GraphicsUnit.Pixel);
         using var brush = new SolidBrush(Color.White);
         using var shadowBrush = new SolidBrush(Color.FromArgb(50, 0, 0, 0));
 

@@ -50,7 +50,7 @@ var websiteHead = $@"<!DOCTYPE html>
 <title>{title} - podcast med {showHosts.SpeakList()}</title>
 <style>
 html, body {{ border: 0; margin: 0; padding: 0; background-color: {bgColor}; color: {textColor}; font-family: arial, sans-serif; }}
-div {{ text-align: center; margin: 0 auto 0 auto; padding: 10px 0 5px 0; width: 50%; min-width: 400px; max-width: 1000px; }}
+div {{ text-align: center; margin: 0 auto 0 auto; padding: 10px 0 5px 0; width: 50%; min-width: 512px; max-width: 1000px; }}
 h1 {{ margin: 0; padding: 5px 0 5px 0; text-align: center; font-size: 50px; font-weight: normal; color: {headerColor}; display: none; }}
 .logo {{ display: block; padding: 0; margin: 0 auto 0 auto; width: [LOGO-SIZE]; height: auto; max-width: 500px; text-align: center; }}
 p {{ margin: 0; padding: 5px 0 5px 0; }} a {{ color: {linkColor}; text-decoration: none; }} a:hover {{ color: {linkHoverColor}; }}
@@ -80,7 +80,7 @@ var episodeSiteHead = $@"<!DOCTYPE html>
 <title><!--EPISODE_TITLE--> - {title} - podcast med {showHosts.SpeakList()}</title>
 <style>
 html, body {{ border: 0; margin: 0; padding: 0; background-color: {bgColor}; color: {textColor}; font-family: arial, sans-serif; }}
-div {{ text-align: center; margin: 0 auto 0 auto; padding: 10px 0 5px 0; width: 50%; min-width: 400px; max-width: 1000px; }}
+div {{ text-align: center; margin: 0 auto 0 auto; padding: 10px 0 5px 0; width: 50%; min-width: 512px; max-width: 1000px; }}
 h1 {{ margin: 0; padding: 5px 0 5px 0; text-align: center; font-size: 50px; font-weight: normal; color: {headerColor}; display: none; }}
 .logo {{ display: block; padding: 0; margin: 0 auto 0 auto; width: 70%; height: auto; max-width: 500px; text-align: center; }}
 p {{ margin: 0; padding: 5px 0 5px 0; }} a {{ color: {linkColor}; text-decoration: none; }} a:hover {{ color: {linkHoverColor}; }}
